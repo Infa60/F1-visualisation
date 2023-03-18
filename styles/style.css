@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700;900&display=swap');
+
+html {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+h3 {
+  margin-top: 0;
+}
+h5 {
+  margin-bottom: 5px;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 700;
+}
+hr {
+  border-color: #e10600;
+}
+
+a {
+  color:  #e10600;
+  
+}
+
+#imageContainer {
+  padding: 0 50px;
+}
+#bgImage {
+  background-image: url("https://zupimages.net/up/22/47/sc2t.png");
+  width: 100%;
+  height: 500px;
+  filter: brightness(10%);
+  border-radius: 10px;
+}
+
+#titleImage {
+  color: white;
+  position: relative;
+  font-weight: 700;
+  font-size: 50px;
+  top: -400px;
+  padding-left: 100px;
+}
+
+#nomAuteurs {
+  color: white;
+  position: relative;
+  top: -400px;
+  left: 100px;
+}
+
+#mapLegend {
+  position: relative;
+  color: #e10600;
+  top: -395px;
+  z-index: 100;
+  font-weight: 700;
+}
+.navbar {
+  background-color: #e10600;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+/* hover du titre de la navbar */
+.navbar-default .navbar-brand {
+  color : white;
+  font-weight: 700;
+  font-size: 30px;
+  cursor: pointer;
+  transition-duration: 0.6s;
+  
+}
+/* hover du titre de la navbar */
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+  color: black;
+}
+.navbar-default .navbar-nav>li>a {
+  color: white;
+  font-size: 18px;
+  transition-duration: 0.3s;
+}
+
+.action-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.leaflet-popup-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.row {
+  padding: 30px 15px 0 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 1rem rgba(0,0,0,.30);
+}
+.well {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(https://www.formula1.com/etc/designs/fom-website/images/patterns/gray3-x1.png) ;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  
+}
+#selectedCircuit {
+  text-align:center;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+#circuitImage {
+  display:flex;
+  justify-content: center;
+}
+
+#circuitImage img{
+  width: 400px;
+  border-radius: 5px;
+}
+
+#circuitsMap {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  border-radius: 5px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #e10600;
+}
+.nav-tabs {
+    border-bottom: 1px solid #e10600;
+}
+
+#piloteImage {
+  display: flex;
+  justify-content: center;
+}
+
+#piloteImage img {
+  width: 200px;
+  border-radius: 5px;
+}
+.tabbable {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+#circuitInfo {
+  padding: 10px 15px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+
+#circuitInfo p{
+ margin:0;
+ text-decoration: underline;
+}
+
+#bestLap {
+  margin-top: 15px;
+}
+
+.col-sm-8 {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+#piloteInfos {
+  padding: 10px 15px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.col-sm-3 p {
+  padding: 10px 15px;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+#titleClassement {
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+#classmentPilotes {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#premier {
+  background-color: #e10600;
+  padding: 3px 10px;
+  width: 300px;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+#deuxieme {
+  background-color: #e10600;
+  padding: 3px 10px;
+  width: 300px;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+#troisieme {
+  background-color: #e10600;
+  padding: 3px 10px;
+  width: 300px;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #e10600;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #e10600;
+    border-bottom-color: transparent;
+}
+
+#kaggleLink {
+  background-color: #e10600;
+  color: white;
+  padding:10px;
+  border-radius: 5px;
+  margin: 10px 0 0 0 ;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+#downloadDiv h2 {
+  margin-bottom: 25px;
+  text-decoration: underline;
+}
+
+#line {
+  width: 800px;
+  height: 5px;
+  background-color: #e10600;
+  position: relative;
+  top: -50px;
+}
+
+#paragraphe {
+  padding: 75px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.55);
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+#paragraphe h3{
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+#remarque {
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  
+#titleImage {
+  padding-left: 25px;
+}
+
+#nomAuteurs {
+  left: 25px;
+}
+
+
+
+}
