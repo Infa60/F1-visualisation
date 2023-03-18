@@ -1,0 +1,120 @@
+---
+title: "Compte rendu F1"
+author: "Vattier Victor Bourgeois Mathieu"
+date: "2022-11-24"
+output: pdf_document
+---
+
+Lien vers l'application sur le web : <https://dataf1.shinyapps.io/f1data/>
+
+## I - Base de donnée et importation
+
+Pour la création de notre application, nous nous sommes orientés vers une base de donnée en provenance du site Kaggle : <https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020> . Intitulée "Formula 1 World Championship (1950-2022)" nous y retrouvons tous les circuits de F1 utilisés dans les années 50 à aujourd'hui ainsi que les pilotes ayant courus sur ces circuits. Nous retrouvons plus d'infos concernant chaque course après l'année 1996 avec par exemple les temps de passage à chaque course.
+
+La base de donnée étant très complète, il a fallu y intégrer plusieurs tables :
+
+**circuit.csv :** Le nom de chaque circuit et son numero Id correspondant, sa localisation et un lien wikipedia.
+
+**constructor_results.csv :** L'Id de chaque constructeur avec l'Id d'une course à laquelle il a participé, et le nombre de points gagné.
+
+**constructor_standings.csv :** L'Id de chaque constructeur avec l'Id d'une course à laquelle il a participé, le nombre de points gagné, et si l'écurie à remporté la victoire.
+
+**constructors.csv :** L'Id de chaque constructeur, son nom, sa nationalité, un nom de référence unique et un lien wikipedia.
+
+**driver_standings.csv :** Un Id pour chaque course, un Id pour les pilotes, le nombre de points gagné, sa position et si le pilote à gagné la course.
+
+**drivers.csv :** L'Id de chaque pilote, son nom, son prénom, sa nationalité, sa date de naissance, son numéro si il est disponible, son code, un nom de référence unique et un lien wikipedia.
+
+**lap_times.csv :** L'id de chaque course, l'Id d'un pilote, le n-ième tour, son temps qui est associé et la position du pilote à l'issu de ce tour.
+
+**races.csv :** L'Id de chaque course, sa date, heure et de quelle année il s'agit, de quel étape dans la saison la course a eut lieu, l'Id du circuit et un lien wikipédia.
+
+**results.csv :** L'Id de chaque course, l'Id d'un pilote, l'Id d'un constructeur, son numero, sa position final et sur la grille de départ, le nombre de points marqués, le nombre de tour effectué, le temps mis, le numero du tour le plus rapide et son temps correspondant, la vitesse moyenne du tour le plus rapide, et le statut de la course.
+
+**status.csv :** L'Id d'une course, l'Id d'un pilote et le statut de la course.
+
+***pit_stop.csv :** L'Id de chaque course, l'Id d'un pilote,l'heure à laquelle le pit stop a été effectué, sa durée et à quel tour il a eut lieu.*
+
+***qualifying.csv :** L'Id de chaque course, l'Id d'un pilote,l'Id d'un constructeur, son numéro, sa position et jusqu'à 3 de ses temps lors des qualifs.*
+
+***sprint_results.csv :** L'Id de chaque course, l'Id d'un pilote, l'Id d'un constructeur, son numero, sa position final et sur la grille de départ, le nombre de points marqués, le nombre de tour effectué, le temps mis, le numero du tour le plus rapide et son temps correspondant, et le statut de la course. Seule différence est que dans cette table seul les sprints sont représentés.*
+
+Dans tous ces fichiers présents sur la base de donnée originel, nous avons choisi de faire l'impasse sur 3 d'entres elle : celle sur les pit stop qui à cause de l'évolution du réglement sur ces derniers ne nous permets pas d'extraire de donnée suffisamment pertinente pour nous. Celle sur les qualifications qui aurait pu être exploitable mais par manque de temps nous avons choisi de nous consacré sur les cours principales. Et pour finir celle sur les sprints, en effet s'agissant d'une épreuve relativement récente le nombre de donné retranscrite aurait été assez faible et de plus comme nous n'avions pas intégrer non plus les qualifications, il n'y avait pas de raison d'intégrer celle ci.
+
+Nous allons à présent décrypter les différentes fonctionnalités de notre interface et les moyens utilisés si ceux ci sont complexes :
+
+## II - Analyse des circuits et des meilleurs performances
+
+**1ère partie :**
+
+![](Compte%20rendu/images/Capture%20d%E2%80%99e%CC%81cran%202022-11-23%20a%CC%80%2016.59.08.png){width="367"}
+
+**1** : Différents filtre permettant d'afficher directement sur la carte les circuits ou regroupement de circuits sélectionnés.
+
+**2** : Sur la care interactive, nous retrouvons l'emplacement des circuits signalisés par le logo F1.
+
+**3** : Lors de la sélection d'un circuit sur la carte, nous avons à notre disposition le nom du circuit ainsi que la ville et le pays dans laquelle il se situe.
+
+**4** : Un bouton sélectionner permet de mettre à jour la **2 ème partie**.
+
+**2 ème partie :**
+
+![](Compte%20rendu/images/Capture%20d%E2%80%99e%CC%81cran%202022-11-23%20a%CC%80%2013.43.21-01.png){width="367"}
+
+**1** : Une description du circuit avec son nom, le tracé du circuit si celui-ci est affiché sur la page wikipedia la ville et le pays dans lequel il se trouve.
+
+**2** : La meilleur performance sur un tour réalisé sur ce circuit et le nom du pilote l'ayant effectué.
+
+**3** : Un classement des pilotes ayant gagnés le plus de poitns sur ce circuit.
+
+**4** : Un classement des meilleurs écuries identique à celui des pilotes.
+
+**5** : Un classement des meilleurs chronos effectué sur ce circuit
+
+## III - Analyse de chaque course en fonction du pilote choisi
+
+Nous allons à présent décrypter les différentes fonctionnalités de notre interface et les moyens utilisés si ceux ci sont complexes :
+
+![](Compte%20rendu/images/Capture%20d%E2%80%99e%CC%81cran%202022-11-23%20a%CC%80%2013.42.43.png)
+
+**1** : A partir de cet input, nous allons sélectionner le pilote dont nous voulons voir les courses dans le **6**.
+
+**2** : En dessous du choix du pilote nous retrouvons une photo en provenance de wikipedia qui va s'adapter automatiquement en fonction du pilote choisi ( pour cela notre application nécessite une connexion internet ).
+
+**3** : En dessous de la photo du pilote, nous avons une petite description du pilote, son nom / prénom, son code en course, son numéro, sa date de naissance, sa nationalité et enfin un lien vers ca page wikipédia.
+
+**4** : En dessous de la description nous pouvons choisir la course dont nous allons vouloir observer le temps de passage dans le **8**.
+
+**4 bis** : La partie droite du tableau intitulé Course Id permet aussi de sélectionner la course dont l'on veut voir les temps de passage
+
+**5** : Ici nous somme renseigné sur l'état de la course et surtout en cas de problème la nature de se dernier
+
+**6** : Cette datatable nous renseigne sur toute les courses effectuées par le pilote sélectionné
+
+**7** : Tout en bas nous avons une checkbox nous permettant d'afficher sur le graphe **8**, le pilote ayant fini premier de la course. En dessous du **5**, nous avons son nom et prénom.
+
+**8** : Au centre de la page, nous retrouvons un graphique avec le temps de passage à chaque tour. Le temps est exprimé en seconde.
+
+## IV - Analyse des saisons pour les pilotes et constructeurs
+
+![](Compte%20rendu/images/Capture%20d%E2%80%99e%CC%81cran%202022-11-21%20a%CC%80%2013.12.32.png){width="502"}
+
+**1** : Nous retrouvons l'input principal nous permettant de choisir la saison que nous souhaitons visionner.
+
+**2** : Un tableau avec chaque étapes constituant une saison, le nom du grand prix, la date et l'Id de la course.
+
+**3** : Volet permettant de visualiser les pilotes.
+
+**4** : Volet permettant de visualiser les écuries.
+
+**5** : La colonne Course Id agit comme un input permettant d'afficher les 3 premiers pilotes d'une course sélectionner.
+
+**6** : Affichage des 3 premiers pilotes de le course sélectionnée dans la colonne **5**.
+
+## V - Difficultés rencontrés
+
+Les points difficiles que nous avons rencontrés concerne l'incorporation d'une checkbox permettant d'ajouter les temps de passage du premier pilote sur la course choisi. Pour ce faire, nous avons du faire en sorte de créer deux graphiques, l'un avec uniquement le pilote sélectionné et un autre avec le pilote sélectionné plus le pilote ayant fini premier. En fonction de si la checkbox est cochée ou non l'un ou l'autre sera affiché.
+
+Nous avons également dû nous confronter à des difficultés concernant l'UI de l'application et plus particulièrement la fonctionnalité de sélection des circuits directement dans les fenêtres popup de la carte des circuits. En effet il n'était pas possible de créer directement un input avec leaflet, c'est donc avec un action button et une fonction callback qui récupère l'id du circuit du marqueur sélectionné sur la carte.\
+\
+Pour ajouter une note de personnalisation à notre application nous avons fait le choix d'utiliser CSS ce qui était relativement difficile à appliquer notamment à cause de la surcouche bootstrap utilisée par défaut par shiny.
